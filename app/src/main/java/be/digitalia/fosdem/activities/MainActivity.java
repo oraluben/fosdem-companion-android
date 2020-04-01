@@ -366,24 +366,24 @@ public class MainActivity extends AppCompatActivity implements NfcUtils.CreateNf
 	protected void onStart() {
 		super.onStart();
 
-		// Download reminder
-		long now = System.currentTimeMillis();
-		Long timeValue = AppDatabase.getInstance(this).getScheduleDao().getLastUpdateTime().getValue();
-		long time = (timeValue == null) ? -1L : timeValue;
-		if ((time == -1L) || (time < (now - DATABASE_VALIDITY_DURATION))) {
-			SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
-			time = prefs.getLong(PREF_LAST_DOWNLOAD_REMINDER_TIME, -1L);
-			if ((time == -1L) || (time < (now - DOWNLOAD_REMINDER_SNOOZE_DURATION))) {
-				prefs.edit()
-						.putLong(PREF_LAST_DOWNLOAD_REMINDER_TIME, now)
-						.apply();
-
-				FragmentManager fm = getSupportFragmentManager();
-				if (fm.findFragmentByTag("download_reminder") == null) {
-					new DownloadScheduleReminderDialogFragment().show(fm, "download_reminder");
-				}
-			}
-		}
+//		// Download reminder
+//		long now = System.currentTimeMillis();
+//		Long timeValue = AppDatabase.getInstance(this).getScheduleDao().getLastUpdateTime().getValue();
+//		long time = (timeValue == null) ? -1L : timeValue;
+//		if ((time == -1L) || (time < (now - DATABASE_VALIDITY_DURATION))) {
+//			SharedPreferences prefs = getPreferences(Context.MODE_PRIVATE);
+//			time = prefs.getLong(PREF_LAST_DOWNLOAD_REMINDER_TIME, -1L);
+//			if ((time == -1L) || (time < (now - DOWNLOAD_REMINDER_SNOOZE_DURATION))) {
+//				prefs.edit()
+//						.putLong(PREF_LAST_DOWNLOAD_REMINDER_TIME, now)
+//						.apply();
+//
+//				FragmentManager fm = getSupportFragmentManager();
+//				if (fm.findFragmentByTag("download_reminder") == null) {
+//					new DownloadScheduleReminderDialogFragment().show(fm, "download_reminder");
+//				}
+//			}
+//		}
 	}
 
 	@Override
